@@ -8,11 +8,7 @@ app = Flask(__name__)
 model = pickle.load(open("regmodel.pkl","rb"))
 scalar = pickle.load(open("scaling.pkl","rb"))
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-@app.route('/predict_api',methods= ['POST'])
+@app.route('/',methods= ['POST'])
 def predict_api():
     data = request.json['data']
     print(data)
@@ -24,5 +20,5 @@ def predict_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0",port=int("3000"),debug=True)
 
